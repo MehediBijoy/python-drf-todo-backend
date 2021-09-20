@@ -1,13 +1,11 @@
 from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.contrib.auth.models import User
-from rest_framework_simplejwt.tokens import RefreshToken, Token
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
 
-from .serializers import loginSerializer, userSerializer, registerSerializer
+from .serializers import *
 
-# login api view
+
 class loginAPI(APIView):
     def post(self, request):
         serializer = loginSerializer(data=request.data)
@@ -36,7 +34,6 @@ class registerAPI(APIView):
 
 class userAPI(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = [JWTAuthentication]
     def get(self, request):
         user = request.user
         return Response({

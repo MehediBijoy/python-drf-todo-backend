@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-# user register serializer
+
 class registerSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -18,7 +18,6 @@ class registerSerializer(serializers.ModelSerializer):
         return user
 
 
-# user login serializer
 class loginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
@@ -31,7 +30,6 @@ class loginSerializer(serializers.Serializer):
             raise serializers.ValidationError('Incorrect credentials')
 
 
-# user info serializer
 class userSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
